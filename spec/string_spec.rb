@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'minitest_helper'
 
-describe Extension::String do
+describe String do
 
   describe 'Upcase' do
 
@@ -9,19 +9,33 @@ describe Extension::String do
       'áèïôu'.upcase.must_equal 'ÁÈÏÔU'
     end
     
-    it 'Without accents'
+    it 'Without accents' do
+      'aEiOu'.upcase.must_equal 'AEIOU'
+    end
 
-    it 'Change itself'
+    it 'Change itself' do
+      string = 'áèiÖU'
+      string.upcase!.must_equal 'ÁÈIÖU'
+      string.must_equal 'ÁÈIÖU'
+    end
 
   end
 
   describe 'Downcase' do
     
-    it 'With accents'
+    it 'With accents' do
+      'ÁÈÏÔU'.downcase.must_equal 'áèïôu'
+    end
 
-    it 'Without accents'
+    it 'Without accents' do
+      'aEiOu'.downcase.must_equal 'aeiou'
+    end
 
-    it 'Change itself'
+    it 'Change itself' do
+      string = 'ÁÈIöu'
+      string.downcase!.must_equal 'áèiöu'
+      string.must_equal 'áèiöu'
+    end
 
   end
 

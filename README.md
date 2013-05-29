@@ -1,16 +1,16 @@
-# Extension
+# core_extended
 
-[![Gem Version](https://badge.fury.io/rb/extension.png)](https://rubygems.org/gems/extension)
-[![Build Status](https://travis-ci.org/gabynaiman/extension.png?branch=master)](https://travis-ci.org/gabynaiman/extension)
-[![Coverage Status](https://coveralls.io/repos/gabynaiman/extension/badge.png?branch=master)](https://coveralls.io/r/gabynaiman/extension?branch=master)
-[![Code Climate](https://codeclimate.com/github/gabynaiman/extension.png)](https://codeclimate.com/github/gabynaiman/extension)
-[![Dependency Status](https://gemnasium.com/gabynaiman/extension.png)](https://gemnasium.com/gabynaiman/extension)
+[![Gem Version](https://badge.fury.io/rb/core_extended.png)](https://rubygems.org/gems/core_extended)
+[![Build Status](https://travis-ci.org/gabynaiman/core_extended.png?branch=master)](https://travis-ci.org/gabynaiman/core_extended)
+[![Coverage Status](https://coveralls.io/repos/gabynaiman/core_extended/badge.png?branch=master)](https://coveralls.io/r/gabynaiman/core_extended?branch=master)
+[![Code Climate](https://codeclimate.com/github/gabynaiman/core_extended.png)](https://codeclimate.com/github/gabynaiman/core_extended)
+[![Dependency Status](https://gemnasium.com/gabynaiman/core_extended.png)](https://gemnasium.com/gabynaiman/core_extended)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'extension'
+    gem 'core_extended'
 
 And then execute:
 
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install extension
+    $ gem install core_extended
 
 ## Usage
 

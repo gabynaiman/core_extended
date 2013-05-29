@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'extension/version'
+require 'core_extended/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "extension"
-  spec.version       = Extension::VERSION
+  spec.name          = "core_extended"
+  spec.version       = CoreExtended::VERSION
   spec.authors       = ["Gabriel Naiman"]
-  spec.email         = ["gnaiman@keepcon.com"]
+  spec.email         = ["gabynaiman@gmail.com"]
   spec.description   = 'Ruby core extensions'
   spec.summary       = 'Ruby core extensions'
-  spec.homepage      = "https://github.com/gabynaiman/extension"
+  spec.homepage      = "https://github.com/gabynaiman/core_extended"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

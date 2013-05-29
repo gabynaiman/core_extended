@@ -1,7 +1,7 @@
 require 'coverage_helper'
 require 'minitest/autorun'
 require 'turn'
-require 'extension'
+require 'core_extended'
 
 Turn.config do |c|
   c.format = :pretty
