@@ -12,7 +12,7 @@ class String
   alias_method :upcase_ignoring_accents!, :upcase!
   def upcase!
     ACCENTS_MAPPING.each { |map| tr! map[:downcase], map[:upcase] }
-    upcase_ignoring_accents!
+    upcase_ignoring_accents! || self
   end
 
   def upcase
@@ -22,7 +22,7 @@ class String
   alias_method :downcase_ignoring_accents!, :downcase!
   def downcase!
     ACCENTS_MAPPING.each { |map| tr! map[:upcase], map[:downcase] }
-    downcase_ignoring_accents!
+    downcase_ignoring_accents! || self
   end
 
   def downcase

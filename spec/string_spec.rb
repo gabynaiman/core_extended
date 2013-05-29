@@ -5,12 +5,16 @@ describe String do
 
   describe 'Upcase' do
 
-    it 'With accents' do
-      'áèïôu'.upcase.must_equal 'ÁÈÏÔU'
+    it 'Only accented' do
+      'áÈïÔú'.upcase.must_equal 'ÁÈÏÔÚ'
     end
     
     it 'Without accents' do
       'aEiOu'.upcase.must_equal 'AEIOU'
+    end
+
+    it 'Mixed' do
+      'áEïÔu'.upcase.must_equal 'ÁEÏÔU'
     end
 
     it 'Change itself' do
@@ -23,12 +27,16 @@ describe String do
 
   describe 'Downcase' do
     
-    it 'With accents' do
-      'ÁÈÏÔU'.downcase.must_equal 'áèïôu'
+    it 'Only accented' do
+      'áÈïÔú'.downcase.must_equal 'áèïôú'
     end
 
     it 'Without accents' do
       'aEiOu'.downcase.must_equal 'aeiou'
+    end
+
+    it 'Mixed' do
+      'áEïÔu'.downcase.must_equal 'áeïôu'
     end
 
     it 'Change itself' do
