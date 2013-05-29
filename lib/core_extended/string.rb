@@ -12,21 +12,21 @@ class String
   alias_method :upcase_ignoring_accents!, :upcase!
   def upcase!
     ACCENTS_MAPPING.each { |map| tr! map[:downcase], map[:upcase] }
-    upcase_ignoring_accents! || self
+    upcase_ignoring_accents!
   end
 
   def upcase
-    self.dup.upcase!
+    self.dup.tap(&:upcase!)
   end
 
   alias_method :downcase_ignoring_accents!, :downcase!
   def downcase!
     ACCENTS_MAPPING.each { |map| tr! map[:upcase], map[:downcase] }
-    downcase_ignoring_accents! || self
+    downcase_ignoring_accents!
   end
 
   def downcase
-    self.dup.downcase!
+    self.dup.tap(&:downcase!)
   end
   
   def unaccented!
@@ -34,19 +34,22 @@ class String
       tr! map[:upcase], map[:letter]
       tr! map[:downcase], map[:letter].downcase
     end
-    self
+    nil
   end
 
   def unaccented
-    self.dup.unaccented!
+    self.dup.tap(&:unaccented!)
   end
 
   def normalized!
-    self.unaccented!.downcase!
+    self.strip!
+    self.gsub! /\s/, '_'
+    self.unaccented!
+    self.downcase!
   end
 
   def normalized
-    self.dup.normalized!
+    self.dup.tap(&:normalized!)
   end
 
 end

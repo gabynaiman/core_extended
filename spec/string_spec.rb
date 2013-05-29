@@ -8,25 +8,27 @@ describe String do
     it 'Only accented' do
       'áÈïÔú'.upcase.must_equal 'ÁÈÏÔÚ'
     end
-    
+
     it 'Without accents' do
       'aEiOu'.upcase.must_equal 'AEIOU'
     end
 
-    it 'Mixed' do
-      'áEïÔu'.upcase.must_equal 'ÁEÏÔU'
+    it 'Keep itself' do
+      string = 'áèiÖU'
+      string.upcase.must_equal 'ÁÈIÖU'
+      string.must_equal 'áèiÖU'
     end
 
     it 'Change itself' do
       string = 'áèiÖU'
-      string.upcase!.must_equal 'ÁÈIÖU'
+      string.upcase!
       string.must_equal 'ÁÈIÖU'
     end
 
   end
 
   describe 'Downcase' do
-    
+
     it 'Only accented' do
       'áÈïÔú'.downcase.must_equal 'áèïôú'
     end
@@ -35,13 +37,15 @@ describe String do
       'aEiOu'.downcase.must_equal 'aeiou'
     end
 
-    it 'Mixed' do
-      'áEïÔu'.downcase.must_equal 'áeïôu'
+    it 'Keep itself' do
+      string = 'áèiÖU'
+      string.downcase.must_equal 'áèiöu'
+      string.must_equal 'áèiÖU'
     end
 
     it 'Change itself' do
       string = 'ÁÈIöu'
-      string.downcase!.must_equal 'áèiöu'
+      string.downcase!
       string.must_equal 'áèiöu'
     end
 
@@ -50,31 +54,51 @@ describe String do
   describe 'Unaccented' do
 
     it 'Transform keeping case' do
-      string = 'Estas son mís létras MÁL acentúadäs y répetidâs íntëntândö ûtîlïzàr tôdas las varïantês'
-      string.unaccented.must_equal 'Estas son mis letras MAL acentuadas y repetidas intentando utilizar todas las variantes'
-      string.must_equal 'Estas son mís létras MÁL acentúadäs y répetidâs íntëntândö ûtîlïzàr tôdas las varïantês'
+      'LétterS wÏth DifFèrent câse ÂND Äccents'.unaccented.must_equal 'LetterS wIth DifFerent case AND Accents'
+    end
+
+    it 'Keep itself' do
+      string = 'áëÌôÛ'
+      string.unaccented.must_equal 'aeIoU'
+      string.must_equal 'áëÌôÛ'
     end
 
     it 'Change itself' do
       string = 'áëÌôÛ'
-      string.unaccented!.must_equal 'aeIoU'
+      string.unaccented!
       string.must_equal 'aeIoU'
     end
-    
+
   end
 
   describe 'Normalized' do
-    
-    it 'Case and accents' do
-      string = 'LétterS wÏth DifFèrent case ÂND Äccents'
-      string.normalized.must_equal 'letters with different case and accents'
-      string.must_equal 'LétterS wÏth DifFèrent case ÂND Äccents'
+
+    it 'Downcase' do
+      'AeIoU'.normalized.must_equal 'aeiou'
+    end
+
+    it 'Remove accents' do
+      'áèïôu'.normalized.must_equal 'aeiou'
+    end
+
+    it 'Replace spaces with underscore' do
+      'this is a sample'.normalized.must_equal 'this_is_a_sample'
+    end
+
+    it 'Strip' do
+      '  text   '.normalized.must_equal 'text'
+    end
+
+    it 'Keep itself' do
+      string = 'LétterS wÏth DifFèrent câse ÂND Äccents'
+      string.normalized.must_equal 'letters_with_different_case_and_accents'
+      string.must_equal 'LétterS wÏth DifFèrent câse ÂND Äccents'
     end
 
     it 'Change itself' do
-      string = 'SámPlÊ'
-      string.normalized!.must_equal 'sample'
-      string.must_equal 'sample'
+      string = 'LétterS wÏth DifFèrent câse ÂND Äccents'
+      string.normalized!
+      string.must_equal 'letters_with_different_case_and_accents'
     end
 
   end
