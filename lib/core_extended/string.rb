@@ -11,10 +11,8 @@ class String
 
   alias_method :upcase_ignoring_accents!, :upcase!
   def upcase!
-    ACCENTS_MAPPING.inject(self) do |string, map|
-      string.tr! map[:downcase], map[:upcase]
-      string
-    end.upcase_ignoring_accents!
+    ACCENTS_MAPPING.each { |map| tr! map[:downcase], map[:upcase] }
+    upcase_ignoring_accents!
   end
 
   def upcase
@@ -23,10 +21,8 @@ class String
 
   alias_method :downcase_ignoring_accents!, :downcase!
   def downcase!
-    ACCENTS_MAPPING.inject(self) do |string, map|
-      string.tr! map[:upcase], map[:downcase]
-      string
-    end.downcase_ignoring_accents!
+    ACCENTS_MAPPING.each { |map| tr! map[:upcase], map[:downcase] }
+    downcase_ignoring_accents!
   end
 
   def downcase
@@ -34,11 +30,11 @@ class String
   end
   
   def unaccented!
-    ACCENTS_MAPPING.inject(self) do |string, map|
-      string.tr! map[:upcase], map[:letter]
-      string.tr! map[:downcase], map[:letter].downcase
-      string
+    ACCENTS_MAPPING.each do |map|
+      tr! map[:upcase], map[:letter]
+      tr! map[:downcase], map[:letter].downcase
     end
+    self
   end
 
   def unaccented
