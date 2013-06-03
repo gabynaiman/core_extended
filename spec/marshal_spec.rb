@@ -2,8 +2,6 @@ require 'minitest_helper'
 
 describe Marshal do
 
-  SERIALIZATION = "BAhvOgpLbGFzcwY6CUBzdHJJIhBoZWxsbyB3b3JsZAY6BkVG\n"
-
   class Klass
     def initialize(str)
       @str = str
@@ -15,13 +13,14 @@ describe Marshal do
 
   it 'Dump and encode base 64' do
     obj = Klass.new 'hello world'
-    Marshal.encode64(obj).must_equal SERIALIZATION
+    Marshal.encode64(obj).must_match %r(^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$)
   end
 
   it 'Decode base 64 and load' do
-    obj = Marshal.decode64 SERIALIZATION
+    serialization = Marshal.encode64(Klass.new('hello people'))
+    obj = Marshal.decode64 serialization
     obj.must_be_instance_of Klass
-    obj.say_hello.must_equal 'hello world'
+    obj.say_hello.must_equal 'hello people'
   end
 
 end
