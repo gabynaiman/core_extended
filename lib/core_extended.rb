@@ -1,1 +1,6 @@
-Dir["#{File.dirname(__FILE__)}/#{File.basename(__FILE__, '.rb')}/*.rb"].each { |file| require file }
+require 'core_extended/version'
+require 'core_extended/os'
+require 'core_extended/marshal'
+require 'core_extended/file'
+require 'core_extended/string'
+
