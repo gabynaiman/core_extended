@@ -1,0 +1,15 @@
+A: 
+  upcase: ÁÀÄÂÃÅĀĂǍ
+  downcase: áàäâãåāăǎ
+E:
+  upcase: ÉÈËÊĒĔĖĚ
+  downcase: éèëêēĕėě
+I:
+  upcase: ÍÌÏÎĨĬǏ
+  downcase: íìïîĩĭǐ
+O:
+  upcase: ÓÒÖÔÕŌŎŐǑ
+  downcase: óòöôõōŏőǒ
+U:
+  upcase: ÚÙÜÛŨŪŬŮŰǓ
+  downcase: úùüûũūŭůűǔ

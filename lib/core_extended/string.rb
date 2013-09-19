@@ -1,17 +1,11 @@
-# encoding: utf-8
 class String
 
-  ACCENTS_MAPPING = [
-    {letter: 'A', upcase: 'ÁÀÄÂ', downcase: 'áàäâ'},
-    {letter: 'E', upcase: 'ÉÈËÊ', downcase: 'éèëê'},
-    {letter: 'I', upcase: 'ÍÌÏÎ', downcase: 'íìïî'},
-    {letter: 'O', upcase: 'ÓÒÖÔ', downcase: 'óòöô'},
-    {letter: 'U', upcase: 'ÚÙÜÛ', downcase: 'úùüû'}
-  ]
+  ACCENTS_MAPPING = ConfigReader.accents_mapping
+  SIMILAR_CHARACTER_MAPPING = ConfigReader.similar_character_mapping
 
   alias_method :upcase_ignoring_accents!, :upcase!
   def upcase!
-    ACCENTS_MAPPING.each { |map| tr! map[:downcase], map[:upcase] }
+    ACCENTS_MAPPING.values.each { |map| tr! map['downcase'], map['upcase'] }
     upcase_ignoring_accents!
   end
 
@@ -21,7 +15,7 @@ class String
 
   alias_method :downcase_ignoring_accents!, :downcase!
   def downcase!
-    ACCENTS_MAPPING.each { |map| tr! map[:upcase], map[:downcase] }
+    ACCENTS_MAPPING.values.each { |map| tr! map['upcase'], map['downcase'] }
     downcase_ignoring_accents!
   end
 
@@ -30,9 +24,9 @@ class String
   end
   
   def unaccented!
-    ACCENTS_MAPPING.each do |map|
-      tr! map[:upcase], map[:letter]
-      tr! map[:downcase], map[:letter].downcase
+    ACCENTS_MAPPING.each do |letter,map|
+      tr! map['upcase'], letter
+      tr! map['downcase'], letter.downcase
     end
     nil
   end
@@ -41,10 +35,21 @@ class String
     self.dup.tap(&:unaccented!)
   end
 
+  def letterize!
+    SIMILAR_CHARACTER_MAPPING.each do |letter, similar_chars|
+      tr! similar_chars, letter.to_s
+    end
+  end
+
+  def letterize
+    self.dup.tap(&:letterize!)
+  end
+
   def normalized!
     self.strip!
     self.gsub! /\s/, '_'
     self.unaccented!
+    self.letterize!
     self.downcase!
   end
 

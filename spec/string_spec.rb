@@ -71,6 +71,33 @@ describe String do
 
   end
 
+  describe 'Letterize' do
+    
+    it 'Transform all similar letters' do
+      ConfigReader.similar_character_mapping.each do |letter, similar_chars|
+        similar_chars.chars.each do |char| 
+          char.letterize.must_equal letter
+        end
+      end
+    end
+    
+    it 'Transform keeping case' do
+      'ßΔЯƦą'.letterize.must_equal 'BARRa'
+    end
+
+    it 'Keep itself' do
+      string = 'ßΔЯƦą'
+      string.letterize.must_equal 'BARRa'
+      string.must_equal 'ßΔЯƦą'
+    end
+
+    it 'Change itself' do
+      string = 'ßΔЯƦą'
+      string.letterize!
+      string.must_equal 'BARRa'
+    end  
+  end
+    
   describe 'Normalized' do
 
     it 'Downcase' do
