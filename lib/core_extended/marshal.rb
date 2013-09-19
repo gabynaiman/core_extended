@@ -1,5 +1,3 @@
-require 'base64'
-
 module Marshal
 
   def self.encode64(object)

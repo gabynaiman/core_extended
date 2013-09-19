@@ -1,9 +1,9 @@
 class File
 
-  if OS.windows? && RUBY_PLATFORM == 'java'
-    def size
-      lstat.size
-    end
+  alias_method :__size__, :size
+  def size
+    return lstat.size if OS.windows? && Ruby.jruby?
+    __size__
   end
 
 end
