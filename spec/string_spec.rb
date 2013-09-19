@@ -130,4 +130,44 @@ describe String do
 
   end
 
+  describe 'Underscore' do
+
+    it 'Camel case' do
+      'CamelCase'.underscore.must_equal 'camel_case'
+    end
+
+    it 'Camel case start with downcase' do
+      'camelCase'.underscore.must_equal 'camel_case'
+    end
+
+    it 'Lower case' do
+      'lowercase'.underscore.must_equal 'lowercase'
+    end
+
+    it 'Upper case' do
+      'UPPERCASE'.underscore.must_equal 'uppercase'
+    end
+
+  end
+
+  describe 'Camelize' do
+
+    it 'Underscore' do
+      'under_score'.camelize.must_equal 'UnderScore'
+    end
+
+    it 'Underscore convert staring with downcase' do
+      'under_score'.camelize(false).must_equal 'underScore'
+    end
+
+    it 'Lower case' do
+      'lowercase'.camelize.must_equal 'Lowercase'
+    end
+
+    it 'Upper case' do
+      'UPPERCASE'.camelize.must_equal 'UPPERCASE'
+    end
+
+  end
+
 end

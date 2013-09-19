@@ -57,4 +57,25 @@ class String
     self.dup.tap(&:normalized!)
   end
 
+  unless method_defined? :underscore
+    def underscore
+      self.gsub(/::/, '/').
+      gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+      gsub(/([a-z\d])([A-Z])/,'\1_\2').
+      tr("-", "_").
+      downcase
+    end        
+  end
+
+  unless method_defined? :camelize
+    def camelize(upper_case_first_letter=true)
+      return self if self !~ /_/ && self =~ /[A-Z]+.*/
+      if upper_case_first_letter
+        split('_').map{|e| e.capitalize}.join
+      else
+        split('_').inject([]){ |buffer,e| buffer.push(buffer.empty? ? e : e.capitalize) }.join
+      end
+    end    
+  end
+
 end
