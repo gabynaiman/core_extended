@@ -1,5 +1,6 @@
 require 'coverage_helper'
 require 'minitest/autorun'
+require 'minitest/great_expectations'
 require 'turn'
 require 'core_extended'
 
