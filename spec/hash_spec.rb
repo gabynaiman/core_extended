@@ -113,4 +113,37 @@ describe Hash do
 
   end
 
+  describe 'Dictionary' do
+
+    it 'Simple hash' do
+      hash = {key_1: 1, 'key_2' => 'text', key_3: []}
+      hash.dictionary.must_equal 'key_1' => 1, 
+                                 'key_2' => 'text', 
+                                 'key_3' => []
+    end
+
+    it 'Nested hashes' do
+      hash = {
+        key_1: 1,
+        'key_2' => 'text',
+        key_3: [],
+        key_4: {
+          1 => '4.1',
+          2 => {
+            1 => '4.2.1',
+            2 => '4.2.2'
+          }
+        }
+      }
+
+      hash.dictionary.must_equal 'key_1' => 1, 
+                                 'key_2' => 'text', 
+                                 'key_3' => [], 
+                                 'key_4.1' => '4.1', 
+                                 'key_4.2.1' => '4.2.1', 
+                                 'key_4.2.2' => '4.2.2'
+    end
+
+  end
+
 end

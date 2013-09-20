@@ -2,6 +2,19 @@ class Hash
 
   Inflector = Struct.new :method, :arguments
 
+  def dictionary(parent_key=nil)
+    Hash.new.tap do |hash|
+      each do |k,v|
+        key = [parent_key, k].compact.join('.')
+        if v.is_a? Hash
+          hash.merge! v.dictionary(key)
+        else
+          hash[key] = v
+        end
+      end
+    end
+  end
+
   def self.inflectors
     @inflectors ||= []
   end
