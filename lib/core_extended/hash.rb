@@ -32,12 +32,8 @@ class Hash
     end.uniq
   end
 
-  def methods(*args)
-    keys.flat_map{ |k| self.class.inflections(k).map(&:to_sym) }.uniq.concat(super)
-  end
-
-  def respond_to?(method, *args)
-    super || methods.include?(method.to_sym)
+  def inflections
+    keys.flat_map{ |k| self.class.inflections(k).map(&:to_sym) }.uniq
   end
 
   def get(key)
@@ -55,7 +51,7 @@ class Hash
   end
 
   def method_missing(method, *args, &block)
-    return get(method) if respond_to?(method.to_sym)
+    return get(method) if inflections.include?(method.to_sym)
     super
   end
 

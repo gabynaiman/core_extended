@@ -29,16 +29,8 @@ describe Hash do
       hash.get('keyName3').must_be_nil
     end
 
-    it 'Methods for all keys' do
-      hash.methods.must_include :keyName1
-      hash.methods.must_include :keyName2
-      hash.methods.wont_include :keyName3
-    end
-
-    it 'Respond to all keys' do
-      hash.must_be :respond_to?, :keyName1
-      hash.must_be :respond_to?, :keyName2
-      hash.wont_be :respond_to?, :keyName3
+    it 'Inflections for all keys' do
+      hash.inflections.must_equal_contents [:keyName1, :keyName2]
     end
 
     it 'Key method accessors' do
@@ -78,26 +70,8 @@ describe Hash do
       hash.get('key_name3').must_equal 3
     end
 
-    it 'Methods for all keys' do
-      hash.methods.must_include :keyName1
-      hash.methods.must_include :key_name1
-      
-      hash.methods.must_include :KeyName2
-      hash.methods.must_include :key_name2
-      
-      hash.methods.wont_include :keyName3
-      hash.methods.must_include :key_name3
-    end
-
-    it 'Respond to all keys' do
-      hash.must_be :respond_to?, :keyName1
-      hash.must_be :respond_to?, :key_name1
-      
-      hash.must_be :respond_to?, :KeyName2
-      hash.must_be :respond_to?, :key_name2
-      
-      hash.wont_be :respond_to?, :keyName3
-      hash.must_be :respond_to?, :key_name3
+    it 'Inflections for all keys' do
+      hash.inflections.must_equal_contents [:keyName1, :key_name1, :KeyName2, :key_name2, :key_name3]
     end
 
     it 'Key method accessors' do
