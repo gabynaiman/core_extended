@@ -13,6 +13,10 @@ describe String do
       'aEiOu'.upcase.must_equal 'AEIOU'
     end
 
+    it 'ñ' do
+      'ñ'.upcase.must_equal 'Ñ'
+    end
+
     it 'Keep itself' do
       string = 'áèiÖU'
       string.upcase.must_equal 'ÁÈIÖU'
@@ -35,6 +39,10 @@ describe String do
 
     it 'Without accents' do
       'aEiOu'.downcase.must_equal 'aeiou'
+    end
+
+    it 'Ñ' do
+      'Ñ'.downcase.must_equal 'ñ'
     end
 
     it 'Keep itself' do
@@ -101,7 +109,7 @@ describe String do
   describe 'Normalized' do
 
     it 'Downcase' do
-      'AeIoU'.normalized.must_equal 'aeiou'
+      'AeIoUÑ'.normalized.must_equal 'aeiouñ'
     end
 
     it 'Remove accents' do
