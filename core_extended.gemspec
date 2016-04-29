@@ -23,6 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest', '~> 4.7'
   spec.add_development_dependency 'minitest-great_expectations'
   spec.add_development_dependency 'turn', '~> 0.9'
-  spec.add_development_dependency 'simplecov'
-  spec.add_development_dependency 'json', '~> 1.7.7'
+  spec.add_development_dependency 'simplecov', '~> 0.10.0'
+  spec.add_development_dependency 'json', '~> 1.8.0'
 end
