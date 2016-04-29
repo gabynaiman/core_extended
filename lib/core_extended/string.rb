@@ -2,10 +2,12 @@ class String
 
   ACCENTS_MAPPING = ConfigReader.accents_mapping
   SIMILAR_CHARACTER_MAPPING = ConfigReader.similar_character_mapping
+  CASE_EXTENSION = ConfigReader.case_extension
 
   alias_method :upcase_ignoring_accents!, :upcase!
   def upcase!
     ACCENTS_MAPPING.values.each { |map| tr! map['downcase'], map['upcase'] }
+    tr! CASE_EXTENSION['downcase'], CASE_EXTENSION['upcase']
     upcase_ignoring_accents!
   end
 
@@ -16,6 +18,7 @@ class String
   alias_method :downcase_ignoring_accents!, :downcase!
   def downcase!
     ACCENTS_MAPPING.values.each { |map| tr! map['upcase'], map['downcase'] }
+    tr! CASE_EXTENSION['upcase'], CASE_EXTENSION['downcase']
     downcase_ignoring_accents!
   end
 

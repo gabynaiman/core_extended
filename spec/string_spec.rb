@@ -13,8 +13,8 @@ describe String do
       'aEiOu'.upcase.must_equal 'AEIOU'
     end
 
-    it 'ñ' do
-      'ñ'.upcase.must_equal 'Ñ'
+    it 'Case extension' do
+      'ñç'.upcase.must_equal 'ÑÇ'
     end
 
     it 'Keep itself' do
@@ -41,8 +41,8 @@ describe String do
       'aEiOu'.downcase.must_equal 'aeiou'
     end
 
-    it 'Ñ' do
-      'Ñ'.downcase.must_equal 'ñ'
+    it 'Case extension' do
+      'ÑÇ'.downcase.must_equal 'ñç'
     end
 
     it 'Keep itself' do
@@ -109,7 +109,7 @@ describe String do
   describe 'Normalized' do
 
     it 'Downcase' do
-      'AeIoUÑ'.normalized.must_equal 'aeiouñ'
+      'ÀeIoUÑÇ'.normalized.must_equal 'aeiouñç'
     end
 
     it 'Remove accents' do

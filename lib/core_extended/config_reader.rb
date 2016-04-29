@@ -14,4 +14,8 @@ class ConfigReader
     @accents_mapping ||= yaml('accents_mapping.yml').freeze
   end
 
+  def self.case_extension
+    @case_extension ||= yaml('case_extension.yml').freeze
+  end
+
 end
