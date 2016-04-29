@@ -4,3 +4,7 @@ rvm:
   - 1.9.3
   - 2.0
   - jruby
+before_install:
+  - gem install bundler
+  - ssh-keygen -q -t rsa -N "" -f ~/.ssh/id_rsa
+  - cp $HOME/.ssh/id_rsa.pub $HOME/.ssh/authorized_keys
